@@ -1,3 +1,35 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .logo{
     width: 8rem;
+}
+.navbar, .title{
+    background-color: #F5EBE0;
+}
+main{
+    background-color: #F0DBDB;
+}
+.card{
+    margin-top: 1rem;
+    padding: auto;
+    background-color: #FEFCF3;
+    border-radius:1px solid pink;
+    margin: 1rem;
+}
+.card > img{
+    padding: .4rem;
+    height: 8rem;
+    object-fit:cover;
+}
+.redes{
+    height: 3rem;
+    border-radius: 50%;
+    padding: .2rem;
+}
+
+footer{
+    background-color:#DBA39A;
 }
