@@ -8,14 +8,25 @@
 }
 .navbar, .title{
     background-color: #F5EBE0;
+    border-bottom: 1px solid rgb(218, 168, 176);
 }
-main{
+
+body {
     background-color: #F0DBDB;
+    position:relative;
+    padding-bottom: 4rem;
+    min-height: 100vh;
 }
+footer {
+    background-color:#DBA39A;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 .card{
     margin-top: 1rem;
     padding: auto;
-    background-color: #FEFCF3;
+    background-color: #E8C4C4;
     border-radius:1px solid pink;
     margin: 1rem;
 }
@@ -24,12 +35,33 @@ main{
     height: 8rem;
     object-fit:cover;
 }
+.btn{
+    background-color: pink;
+}
 .redes{
     height: 3rem;
     border-radius: 50%;
     padding: .2rem;
 }
-
-footer{
-    background-color:#DBA39A;
+.contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+table{
+    margin:auto;
+    empty-cells: show;
+    width: 70rem;
+    margin-top: 2rem;
+}
+table th{
+    background-color: #e08b73;
+}
+table td, table th, table tr{
+    border: 1px solid black;
+}
+/* @media (max-width: 700px){
+
+} */
+
+
