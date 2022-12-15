@@ -2,10 +2,10 @@ let events=data.events;
 let currentDate=data.currentDate;
 let div = document.getElementById("cards");
 div.innerHTML='';
-function cardsPastEvents(data,date){
-  for(let element of data){
+function cardsPastEvents(data,date,container){
+  data.forEach((element)=>{
     if(element.date<date){
-      div.innerHTML += `
+      container.innerHTML += `
         <div class="card m-2" style="width: 18rem;">
         <img src="${element.image}" class="card-img-top"  alt="image ${element.id}">
         <div class="card-body">
@@ -16,6 +16,6 @@ function cardsPastEvents(data,date){
         </div>
         `
     };
-  };
+  });
 };
-cardsPastEvents(events,currentDate);
+cardsPastEvents(events,currentDate,div);
