@@ -1,41 +1,14 @@
 let events=data.events;
 let cardsContainer = document.getElementById("cards");
 let checksContainer=document.getElementById('checkbox-container');
-
+let search=document.getElementById('search')
 cardsEvents(events,cardsContainer);
 renderChecks(checksContainer);
 let checks=document.querySelectorAll('.checkbox');
 eventChecked(checks);
 
-function eventChecked(selector){
-  selector.forEach(element=> element.addEventListener('click',(e)=> filterChecks(e,events,cardsContainer)))
-}
-
-
-function filterChecks(event,data,container){
-  let checked=document.querySelectorAll('.checkbox:checked');
-
-  checked.forEach((element)=>{
-    let filter=[]
-    if(event.target.checked){
-      filter= data.filter((element)=> element.category===event.target.value)
-      return cardsEvents(filter,container)
-    }else{
-      return cardsEvents(data,container)
-    }
-  })
-
-  
-  if(event.target.checked){
-    filter= data.filter((element)=> element.category===event.target.value)
-    cardsEvents(filter,container)
-  }else{
-    cardsEvents(data,container)
-  }
-}
-
 function cardsEvents(data,container){
-  cardsContainer.innerHTML='';
+  container.innerHTML='';
   data.forEach((element)=>{
     container.innerHTML += `
     <div class="card m-2" style="width: 18rem;">
@@ -43,7 +16,7 @@ function cardsEvents(data,container){
       <div class="card-body">
           <h5 class="card-title text-center">${element.name}</h5>
           <p class="card-text">${element.description}</p>
-          <a href="./pages/details.html" class="btn btn-primary">More Info</a>
+          <a href="./pages/details.html?id=${element._id}" class="btn btn-primary">More Info</a>
       </div>
     </div>
     `
@@ -53,7 +26,7 @@ function cardsEvents(data,container){
 function renderChecks(container){
   let filterCategorys=(events.map((element)=>element.category));
   let categorys=[... new Set(filterCategorys)];
-  container.innerHTML='';
+ // container.innerHTML='';
   categorys.forEach((element)=>{
     container.innerHTML+=`
       <label>
@@ -63,6 +36,38 @@ function renderChecks(container){
   });
 };
 
+function eventChecked(selector){
+  selector.forEach(element=> element.addEventListener('click',(e)=>  filter()));
+}
+
+function filterChecks(data,container){
+  let checked=document.querySelectorAll('.checkbox:checked');
+  let filter=[]
+  checked.forEach((element)=>{
+      let aux=data.filter((index)=> index.category===element.value);
+      filter= filter.concat(aux);
+  })
+  if(filter.length===0){
+    return cardsEvents(data,container);
+  }else{
+    return cardsEvents(filter,container);
+  }
+};
+
+function filterSearch(array,value){
+  let filter= array.filter((element)=>element.name.toLowerCase().includes(value.toLowerCase()));
+  return filter;
+}
+
+search.addEventListener('input',(e)=>filter())
+
+function filter(){
+  let checked=[...document.querySelectorAll('.checkbox:checked')];
+  checked=checked.map(element=>element.value);
+  let filterChecks=events.filter(element=>checked.includes(element.category));
+  let filterSearch=filterChecks.filter((element)=>element.name.toLowerCase().includes(search.value.toLowerCase()));
+  cardsEvents(filterSearch,checksContainer)
+}
 
 
 
