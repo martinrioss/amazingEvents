@@ -1,21 +1,15 @@
+import {renderCards,renderChecks,filter2,filter} from'./modules/functions.js'
 let events=data.events;
 let currentDate=data.currentDate;
-let div = document.getElementById("cards");
-div.innerHTML='';
-function cardsUpcomingEvents(data,date,container){
-  data.forEach((element)=>{
-    if(date<element.date){
-      container.innerHTML += `
-          <div class="card m-2" style="width: 18rem;">
-            <img src="${element.image}" class="card-img-top"  alt="image ${element.id}">
-            <div class="card-body">
-              <h5 class="card-title text-center">${element.name}</h5>
-              <p class="card-text">${element.description}</p>
-              <a href="./details.html"   class="btn btn-primary">More Info</a>
-            </div>
-          </div>
-        `
-    };
-  });
-};
-cardsUpcomingEvents(events,currentDate,div);
+events=events.filter(element=>currentDate<element.date);
+let cardsContainer = document.getElementById("cards");
+let checksContainer=document.getElementById('checkbox-container');
+let search=document.getElementById('search')
+renderCards(events,cardsContainer,true);
+renderChecks(checksContainer,events);
+let checks=document.querySelectorAll('.checkbox');
+eventChecked(checks);
+function eventChecked(selector){
+  selector.forEach(element=> element.addEventListener('click',()=>  filter(events,cardsContainer)));
+}
+search.addEventListener('input',()=>filter2(events,cardsContainer));

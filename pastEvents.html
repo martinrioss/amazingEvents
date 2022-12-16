@@ -51,28 +51,11 @@
       <div class="container-fluid">
         <div class="row align-items-start">
           <div class="col-9">
-            <form>
-              <label for="">
-                <input type="checkbox" name="Category" id="categori1" class="me-2" />Category
-              </label>
-              <label for="">
-                <input type="checkbox" name="Category" id="category2" class="me-2" />Category
-              </label>
-              <label for="">
-                <input type="checkbox" name="Category" id="category3" class="me-2" />Category
-              </label>
-              <label for="">
-                <input type="checkbox" name="Category" id="category4" class="me-2" />Category
-              </label>
-              <label for="">
-                <input type="checkbox" name="Category1" id="category5" class="me-2" />Category
-              </label>
-            </form>
+            <form id="checkbox-container"></form>
           </div>
           <div class="col">
             <form action="">
-              <input type="text" name="" id="" placeholder="Search Event" />
-              <button>🔍</button>
+              <input type="text" name="" id="search" placeholder="Search Event" />
             </form>
           </div>
         </div>
@@ -102,6 +85,6 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"></script>
       <script src="../data.js"></script>
-      <script src="../pastEvents.js"></script>
+      <script type="module" src="../pastEvents.js"></script>
   </body>
 </html>
