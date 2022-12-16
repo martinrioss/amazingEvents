@@ -12,7 +12,7 @@ export function renderCards(data,container){
           <div class="card-body">
               <h5 class="card-title text-center">${element.name}</h5>
               <p class="card-text">${element.description}</p>
-              <a href="./pages/details.html?id=${element._id}" class="btn btn-primary">More Info</a>
+              <a href="./details.html?id=${element._id}" class="btn btn-primary">More Info</a>
           </div>
         </div>
         `
