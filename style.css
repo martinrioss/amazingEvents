@@ -36,10 +36,9 @@ footer {
 }
 .btn{
     background-color: pink;
-    border-color: pink;
+    border-color:rgb(99, 83, 86);
     color: black;
-    margin-bottom: 7px;
-    width: 40%;
+    margin-bottom: 2px;
 }
 .redes{
     height: 3rem;

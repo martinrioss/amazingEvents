@@ -9,60 +9,38 @@ fetch('https://amazing-events.onrender.com/api/events')
     let currentDate=data.currentDate;
     let upcomingEvents=events.filter(element=>currentDate<element.date);
     let pastEvents=events.filter(element=>element.date<currentDate);
-    //renderTable1(events,pastEvents,table1);
     renderTable1(pastEvents,events,table1)
     renderTable2(upcomingEvents,table2);
     renderTable3(pastEvents,table3);
   })
   .catch(error=>console.log(error));
 
-function filterAssistance (eventsPast) {
-  let assistance= [...eventsPast] 
-  let arrayAssistance= [] 
-  assistance.forEach(propiedades => {
-      let percentage= (((propiedades.assistance*100) / propiedades.capacity))
-      if(percentage> 95) {
-      return arrayAssistance.push (`${propiedades.name}; ${((percentage).toFixed(2))}%`)
-      }
-  })
-  return (arrayAssistance) 
+function assistance(pastEvents){
+  let array=[];
+  pastEvents.forEach((e)=>{
+    array.push({name:e.name,assistance:(100*e.assistance/e.capacity).toFixed(2)});
+  }) 
+  array.sort((a,b)=>b.assistance-a.assistance)
+  return array;
 }
 
-function filterMinerAssistance (eventsPast) {
-  let minorAssistance= [...eventsPast]
-  let arrayMinorAssistance= []
-  minorAssistance.forEach(menor => {
-      let percentage= (((menor.assistance*100) / menor.capacity))
-      if(percentage < 70) {
-      return arrayMinorAssistance.push (`${menor.name}; ${((percentage).toFixed(2))}%`) 
-      }
-  })
-  return (arrayMinorAssistance)
-}
-
-function capacity (listaHome) {
-  let capacityTotal= [...listaHome]
-  capacityTotal.sort((event1,event2)=>event2.capacity-event1.capacity)
-  return (capacityTotal) 
-}
-
-function renderTable1(data,events,container){
-  let finalAssistance=  filterAssistance (data) 
-  let finalMinerAssistance =filterMinerAssistance (data)
-  let finalCapacity= capacity (events)
-  
-  container.innerHTML = `
-      <tr>
-          <td class= "style: text-center"> ${finalAssistance} </td> 
-          <td class= "style: text-center"> ${finalMinerAssistance} </td>
-          <td class= "style: text-center"> ${finalCapacity[0].name}</td> 
-      </tr>
-  `
+function capacity(events){
+  return events.sort((a,b)=>b.capacity-a.capacity)
 
 }
 
+function renderTable1(pastEvents,events,container){
+  let arrayAssistance=  assistance (pastEvents) 
+  let arrayCapacity=capacity(events)
+  container.innerHTML+=`
+    <tr>
+      <td>${arrayAssistance[0].name}</td>
+      <td>${arrayAssistance[arrayAssistance.length-1].name}</td>
+      <td>${arrayCapacity[0].name}</td>
+    </tr>
+    `
 
-
+}
 
 function renderTable2(data,container){
   
