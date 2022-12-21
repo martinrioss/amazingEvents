@@ -12,8 +12,11 @@ export function renderCards(data,container){
           <div class="card-body">
               <h5 class="card-title text-center">${element.name}</h5>
               <p class="card-text">${element.description}</p>
-              <a href="./details.html?id=${element._id}" class="btn btn-primary">More Info</a>
           </div>
+          <div class="d-flex">
+            <a href="./details.html?id=${element._id}" class="btn  flex-grow-1">More Info</a>
+           <h5 class="">Price:$${element.price}<h5>
+          <div>
         </div>
         `
       });

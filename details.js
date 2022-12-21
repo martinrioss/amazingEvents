@@ -1,10 +1,22 @@
-let events=data.events
-let container=document.getElementById('cards')
-let id= new URLSearchParams(location.search).get('id')
-let card= events.find(element=>element._id===parseInt(id));
+
+let container=document.getElementById('cards');
 
 
-container.innerHTML=`
+
+fetch('https://amazing-events.onrender.com/api/events')
+  .then(res=>res.json())
+  .then(data=>{
+    let events=data.events;
+    let id= new URLSearchParams(location.search).get('id');
+    console.log(id)
+    let card= events.find(element=>element._id===id);
+    cardDetail(card)
+  })
+  .catch(error=>console.log(error))
+
+
+function cardDetail(card){
+   container.innerHTML=`
 <div class="card  mb-3 details" style="max-width: 540px;">
 <div class="row g-0 ">
   <div class="col-md-4">
@@ -21,3 +33,4 @@ container.innerHTML=`
 </div>
 </div>
 `
+}

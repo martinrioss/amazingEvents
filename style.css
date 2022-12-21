@@ -31,11 +31,15 @@ footer {
 }
 .card > img{
     padding: .4rem;
-    height: 8rem;
+    height:23vh;
     object-fit:cover;
 }
 .btn{
     background-color: pink;
+    border-color: pink;
+    color: black;
+    margin-bottom: 7px;
+    width: 40%;
 }
 .redes{
     height: 3rem;
@@ -53,6 +57,9 @@ table{
     width: 70%;
     margin-top: 2rem;
     margin-bottom: 1rem;
+}
+thead{
+    font-weight: bold;
 }
 table th{
     background-color: #e08b73;
